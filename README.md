@@ -8,16 +8,17 @@ Performs an online replication consistency check by executing checksum queries o
 ## Prerequisites
 
 * PHP 5.3 and above
-* MySQLi extension enabled
-
-## How it works
-
-todo
+* php-mysqli extension enabled
+* MySQL database and at least 1 replica (all binary log format is supported (statement, row, mixed))
 
 ## Risk
 
 * Adds load to the servers 
-* Can acquire write lock on some data for long period if replica’s are overloaded
+* Can acquire write lock on some data for long period if servers are overloaded
+
+## How it works
+
+todo
 
 ## Usage
 
