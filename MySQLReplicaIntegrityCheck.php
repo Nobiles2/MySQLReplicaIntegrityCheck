@@ -19,7 +19,10 @@
     
     $chunk_size = 100000; // rows
     
-    
+	
+    #
+    #	functions
+    #
     function getmicrotime()
     { 
         list($usec, $sec) = explode(" ",microtime()); 
