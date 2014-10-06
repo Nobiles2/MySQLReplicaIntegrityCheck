@@ -14,7 +14,7 @@ Performs an online replication consistency check by executing checksum queries o
 ## Risk
 
 * Adds load to the servers 
-* Can acquire write lock on some data for long period if servers are overloaded
+* Can cause write lock on some data for longer periods of time if replicas are overloaded (if slave’s log pos won't catch’up master's log pos fast enough)
 
 ## How it works
 
