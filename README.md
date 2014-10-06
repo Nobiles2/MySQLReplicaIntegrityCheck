@@ -19,10 +19,15 @@ Performs an online replication consistency check by executing checksum queries o
 ## How it works
 
 1) This tool connects simultaneously to all data servers and creates ‘__integrity_check_dummy__’ table (an internal index that is used for finding out which data package is currently processed and if data on replicas already “caught up”) on each of them.
+
 2) In the next step, it focuses on one table, and locks (only for writing) a single data package (i.e. first 10k rows).
+
 3) Index on ‘__integrity_check_dummy__’ table is incremented, which also causes incrementation of master_log_pos, and it forces MySQL to replicate this change on Slave servers.
+
 4) Now, it’s monitoring replication progress on Slave servers, which means, it waits until index, on replicated table, __integrity_check_dummy__, is the same as the one on Master. If databases aren’t overloaded, this shouldn’t take much time.
+
 5) When Slave catches up with Master’s data, comes actual checksum testing of both (Master and Slave) sides. (Because data is locked on Master, and Slave caught up, a test on that data package can be performed).
+
 6) Right after checking, data on Master is unlocked and whole process is repeated on another data package.
 
 Data packaging is done according to database’s primary keys or unique not nulls, if there is no primary. And if there are no keys, then it’s necessary to lock whole table, for the time of checksum testing.
