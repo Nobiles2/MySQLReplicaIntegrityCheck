@@ -3,7 +3,7 @@ MySQLReplicaIntegrityCheck
 
 ## Goal
 
-Performs an online replication consistency check by executing checksum queries on the master and all slaves, which produces different results on replicas that are inconsistent with the master.
+Performs an online replication consistency check by executing checksum queries on the master and all slaves, and find out which of the replicas are inconsistent with the master.
 
 ## Prerequisites
 
