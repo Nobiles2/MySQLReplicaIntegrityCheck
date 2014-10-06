@@ -10,6 +10,7 @@ Performs an online replication consistency check by executing checksum queries o
 * PHP 5.3 and above
 * php-mysqli extension enabled
 * MySQL database and at least 1 replica (all binary log format is supported (statement, row, mixed))
+* All tables have to be in InnoDB format
 
 ## Risk
 
